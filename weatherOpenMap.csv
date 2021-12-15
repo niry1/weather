@@ -1,0 +1,21 @@
+city,country,temp,temp_max,temp_min,humidity,pressure,sky,sunrise,sunset,wind,wind_deg,dt,cloudiness
+Forville,FR,-0.82,0.67,-6.85,64,1034,Clouds,08:04 AM,04:52 PM,0.84,,11:08 PM,90
+La Portanière,FR,6.3,11.01,1.88,100,1028,Clear,08:00 AM,05:00 PM,1.54,,11:08 PM,0
+Wittenheim,FR,4.01,4.75,2.81,96,1035,Clouds,08:13 AM,04:38 PM,1.41,,11:07 PM,77
+Wattrelos,FR,9,9.85,8.17,88,1034,Clouds,08:42 AM,04:42 PM,1.54,,11:08 PM,90
+Vitré,FR,5.61,5.9,4.45,93,1034,Clear,08:48 AM,05:11 PM,3.29,,11:08 PM,0
+Viry-Châtillon,FR,7.34,8.46,5.71,95,1035,Clouds,08:36 AM,04:54 PM,1.54,,11:04 PM,90
+Villeneuve-le-Roi,FR,7.39,8.43,5.68,94,1035,Clouds,08:36 AM,04:54 PM,1.54,,11:08 PM,90
+Arrondissement de Vierzon,FR,4.2,5.82,2.03,94,1034,Clouds,08:31 AM,05:02 PM,3.18,,11:08 PM,87
+Verrières-le-Buisson,FR,7.11,8.16,5.41,94,1035,Clouds,08:37 AM,04:54 PM,2.06,,11:08 PM,90
+Arrondissement d'Antony,FR,7.32,8.33,5.58,94,1035,Clouds,08:37 AM,04:54 PM,1.54,,11:08 PM,90
+Vallauris,FR,7.97,10.68,4.89,72,1028,Clear,07:58 AM,04:55 PM,2.06,,11:08 PM,0
+Tourcoing,FR,8.99,9.79,8.19,89,1034,Clouds,08:42 AM,04:42 PM,1.54,,11:05 PM,90
+Taverny,FR,7.54,8.18,5.43,94,1031,Clouds,08:38 AM,04:53 PM,1.54,,11:05 PM,90
+Soisy-sous-Montmorency,FR,7.76,8.4,5.65,92,1031,Clouds,08:38 AM,04:53 PM,0,,11:08 PM,90
+Sin-le-Noble,FR,9.03,9.64,8.25,92,1034,Clouds,08:41 AM,04:44 PM,1.85,,11:08 PM,100
+Sèvres,FR,7.07,8.02,5.27,94,1035,Clouds,08:37 AM,04:54 PM,2.06,,11:05 PM,90
+Salon-de-Provence,FR,2.52,5.49,-0.31,88,1029,Clear,08:06 AM,05:03 PM,0,,11:08 PM,0
+Saint-Ouen-sur-Seine,FR,7.56,8.39,5.64,93,1035,Clouds,08:37 AM,04:54 PM,0,,11:07 PM,90
+Saint-Fons,FR,1.87,2.97,1.04,93,1033,Mist,08:14 AM,04:56 PM,2.06,,11:08 PM,90
+Saint-Avold,FR,5.71,7.27,5.13,99,1035,Clouds,08:21 AM,04:35 PM,1.37,,11:08 PM,57
