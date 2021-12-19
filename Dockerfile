@@ -7,6 +7,6 @@ LABEL maintainer = "niry.hoareau@gmail.com"
 WORKDIR /app/
 COPY weather.py requirements.txt city.list.json /app/
 RUN pip install -r requirements.txt
-CMD ["python","./crawler.py"]
+CMD ["python","./weather.py"]
 # When the container starts, run this
 ENTRYPOINT python ./weather.py
