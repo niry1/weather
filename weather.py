@@ -15,6 +15,13 @@ from IPython.core.display import HTML
 import os
 import csv
 from termcolor import colored, cprint
+import pandas as pd
+import json 
+from pandas.io.json import json_normalize #package for flattening json in pandas df
+import datetime
+import json
+import urllib.request
+import datetime
 #os.chdir("C:\\users\\msellami\\PythonTraining\\")
 
 """Dans cet atelier, nous exploitions cette api afin d’extraire les données météorologique sous forme JSON et on le stocke dans un fichier CSV respectant un format bien défini.
@@ -38,9 +45,7 @@ Comme indiqué dans le cours, nous allons utiliser Python pour interroger openwe
 #### Chargement des modules importantes
 """
 
-import datetime
-import json
-import urllib.request
+
 
 """#### Configuration de API et genration de url d'accès à l'API
 Définition d'un fonction qui prend en parametres id de la ville, la ville, le pays pour generer un url respectant l'appel de l'<b>API OpenWeatherMAP</b> et aussi configurer l'APPID recuperé après enregistrement sur le site.
@@ -55,7 +60,7 @@ Pour Fahrenheit, on utilise unité=imperial, pour Celsius, on utilise unité= me
 """
 
 def url_builder(city_id,city_name,country):
-    user_api = 'ac756dbda4be086b798c4302361463a5'  # Obtain yours form: http://openweathermap.org/
+    user_api = '60cb4631b4aeb406c2f1fa75bf08dc36'  # Obtain yours form: http://openweathermap.org/
     unit = 'metric'  # For Fahrenheit use imperial, for Celsius use metric, and the default is Kelvin.
     if(city_name!=""):
         api = 'http://api.openweathermap.org/data/2.5/weather?q=' # "http://api.openweathermap.org/data/2.5/weather?q=Tunis,fr
@@ -99,7 +104,7 @@ def data_fetch(full_api_url):
 Le module datetime, qui doit être installé sur vos machines permet de manipuler les dates et les heures. En particulier, il permet de convertir un timestamp en date :
 """
 
-import datetime
+
 ts = 1543219200.0
 print(datetime.datetime.fromtimestamp(ts))
 
@@ -247,11 +252,6 @@ def  ReadCSV():
   
 """
 
-import pandas as pd
-import json 
-import pandas as pd 
-from pandas.io.json import json_normalize #package for flattening json in pandas df
-
 #load json object
 
 def getVilles():
@@ -268,8 +268,8 @@ if __name__ == '__main__':
 
     df = villes[villes["country"]=="FR"]
 
-# for i in range(df.values.size-1):
-for i in range(20):
+for i in range(df.values.size-1):
+# for i in range(10):
     try:
         city_name = df.values[i][1]
 
