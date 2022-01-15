@@ -22,6 +22,7 @@ import datetime
 import json
 import urllib.request
 import datetime
+import urllib
 #os.chdir("C:\\users\\msellami\\PythonTraining\\")
 
 """Dans cet atelier, nous exploitions cette api afin d’extraire les données météorologique sous forme JSON et on le stocke dans un fichier CSV respectant un format bien défini.
@@ -64,13 +65,13 @@ def url_builder(city_id,city_name,country):
     unit = 'metric'  # For Fahrenheit use imperial, for Celsius use metric, and the default is Kelvin.
     if(city_name!=""):
         api = 'http://api.openweathermap.org/data/2.5/weather?q=' # "http://api.openweathermap.org/data/2.5/weather?q=Tunis,fr
-        full_api_url = api + str(city_name) +','+ str(country)+ '&mode=json&units=' + unit + '&APPID=' + user_api
+        full_api_url = api + urllib.parse.quote(str(city_name)) +','+ urllib.parse.quote(str(country))+ '&mode=json&units=' + unit + '&APPID=' + user_api
     else:
         api = 'http://api.openweathermap.org/data/2.5/weather?id='     # Search for your city ID here: http://bulk.openweathermap.org/sample/city.list.json.gz
         full_api_url = api + str(city_id) + '&mode=json&units=' + unit + '&APPID=' + user_api
    
     return full_api_url
-
+    # return urllib.parse.quote(full_api_url)
 """Test cette fonction avec Tunis, Tunisia ou son ID=2464470"""
 
 # city_name='Tunis'
@@ -219,12 +220,12 @@ def WriteCSV(data):
     pathFileCsv = os.path.isfile('./weatherOpenMap.csv') 
 
     if pathFileCsv == False:
-        with open('weatherOpenMap.csv', 'w', encoding="utf-8") as fw: 
+        with open('weatherOpenMap.csv', 'w', newline="",  encoding="utf-8") as fw: 
             w = csv.DictWriter(fw, data.keys())
             w.writeheader()#écrire l'en-tête
             w.writerow(data)
     else:
-        with open('weatherOpenMap.csv', 'a', encoding="utf-8") as fa:
+        with open('weatherOpenMap.csv', 'a',newline="", encoding="utf-8") as fa:
             w = csv.DictWriter(fa, data.keys())
             w.writerow(data)
 
@@ -255,7 +256,8 @@ def  ReadCSV():
 #load json object
 
 def getVilles():
-    with open('city.list.json') as f:
+    print(os.getcwd())
+    with open('city.list.json', encoding="utf-8") as f:
         d = json.load(f)
         villes=pd.DataFrame(d)
         return villes
@@ -267,55 +269,59 @@ if __name__ == '__main__':
     villes=getVilles()
 
     df = villes[villes["country"]=="FR"]
+    df = df.drop_duplicates(subset=['name'])
+    df = df.reset_index(drop =True)
 
-for i in range(df.values.size-1):
+
+for i in range(len(df)):
 # for i in range(10):
-    try:
-        city_name = df.values[i][1]
+    try:      
+        # city_name = df.values[i][1]
+        city_name = df["name"][i]
 
         #remplacement des caractères spéciaux par des codes URL
-        city_name = city_name.replace(" ", "%20")
-        city_name = city_name.replace("è", "%C3%A8")
-        city_name = city_name.replace("é", "%C3%A9")
-        city_name = city_name.replace("â", "%C3%A2")
-        city_name = city_name.replace("É", "%C3%89")
-        city_name = city_name.replace("ô", "%C3%B4")
-        city_name = city_name.replace("ë", "%C3%AB")
-        city_name = city_name.replace("Î", "%C3%BF")
-        city_name = city_name.replace("œ", "oe")
-        city_name = city_name.replace("ê", "%C3%AA")
-        city_name = city_name.replace("à", "%C3%A0")
-        city_name = city_name.replace("î", "%C3%AE")
-        city_name = city_name.replace("û", "%C3%BB")
-        city_name = city_name.replace("ù", "%C3%B9")
-        city_name = city_name.replace("ô", "%C3%B4")
-        city_name = city_name.replace("ç", "%C3%A7")
-        city_name = city_name.replace("â", "%C3%A2")
-        city_name = city_name.replace("î", "%C3%AE")
-        city_name = city_name.replace("î", "%C3%AE")
-        city_name = city_name.replace("î", "%C3%AE")
-        city_name = city_name.replace("î", "%C3%AE")
-        city_name = city_name.replace("î", "%C3%AE")
+        # city_name = city_name.replace(" ", "%20")
+        # city_name = city_name.replace("è", "%C3%A8")
+        # city_name = city_name.replace("é", "%C3%A9")
+        # city_name = city_name.replace("â", "%C3%A2")
+        # city_name = city_name.replace("É", "%C3%89")
+        # city_name = city_name.replace("ô", "%C3%B4")
+        # city_name = city_name.replace("ë", "%C3%AB")
+        # city_name = city_name.replace("Î", "%C3%BF")
+        # city_name = city_name.replace("œ", "oe")
+        # city_name = city_name.replace("ê", "%C3%AA")
+        # city_name = city_name.replace("à", "%C3%A0")
+        # city_name = city_name.replace("î", "%C3%AE")
+        # city_name = city_name.replace("û", "%C3%BB")
+        # city_name = city_name.replace("ù", "%C3%B9")
+        # city_name = city_name.replace("ô", "%C3%B4")
+        # city_name = city_name.replace("ç", "%C3%A7")
+        # city_name = city_name.replace("â", "%C3%A2")
+        # city_name = city_name.replace("î", "%C3%AE")
+        # city_name = city_name.replace("î", "%C3%AE")
+        # city_name = city_name.replace("î", "%C3%AE")
+        # city_name = city_name.replace("î", "%C3%AE")
+        # city_name = city_name.replace("î", "%C3%AE")
 
-        #skip les caractère spéciaux non connu
-        if "'" in city_name:
-            continue
+        # #skip les caractère spéciaux non connu
+        # if "'" in city_name:
+        #     continue
 
-        if "\x9c" in city_name:
-            continue
+        # if "\x9c" in city_name:
+        #     continue
 
-        if "\xe7" in city_name:
-            continue
+        # if "\xe7" in city_name:
+        #     continue
 
-        if "\xef" in city_name:
-            continue
+        # if "\xef" in city_name:
+        #     continue
 
-        if "\u0152" in city_name:
-            continue
+        # if "\u0152" in city_name:
+        #     continue
 
-        country= df.values[i][2] #variable du pays
-        city_id= df.values[i][0] #variable de l'id  
-
+        # country= df.values[i][2] #variable du pays
+        country= df["country"][i]
+        city_id= df["id"][i] #variable de l'id  
         #Generation de l url
         print(colored('Generation de l url ', 'red',attrs=['bold']))
         url=url_builder(city_id,city_name,country)
